@@ -3,41 +3,202 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>School Website</title>
+    <title>DriveForward Academy — Student Registry</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header>
-      <h1>Welcome to Our School</h1>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#programs">Programs</a>
-        <a href="#contact">Contact</a>
-      </nav>
+    <div class="road-bg" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#">
+          <span class="brand-icon" aria-hidden="true">◎</span>
+          <span>
+            <strong>DriveForward</strong>
+            <small>Academy</small>
+          </span>
+        </a>
+        <nav class="nav">
+          <a href="#registry">Registry</a>
+          <a href="#programs">Programs</a>
+          <a href="#instructors">Instructors</a>
+        </nav>
+        <a class="btn btn-primary btn-sm" href="#registry">View Students</a>
+      </div>
     </header>
 
     <main>
-      <section id="about">
-        <h2>About Us</h2>
-        <p>
-          We are committed to providing a supportive learning environment for
-          every student.
-        </p>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">School Driving Program · 5,000+ Enrolled</p>
+            <h1>Train smarter.<br /><span>Drive with confidence.</span></h1>
+            <p class="hero-text">
+              A modern student registry for behind-the-wheel training — track
+              permits, lessons, instructors, and road test progress in one place.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#registry">Browse Registry</a>
+              <a class="btn btn-ghost" href="#programs">Our Programs</a>
+            </div>
+          </div>
+          <div class="hero-panel">
+            <div class="dashboard-preview">
+              <div class="preview-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span>Live Program Dashboard</span>
+              </div>
+              <div class="preview-stats" id="hero-stats">
+                <div class="preview-stat skeleton"></div>
+                <div class="preview-stat skeleton"></div>
+                <div class="preview-stat skeleton"></div>
+                <div class="preview-stat skeleton"></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <section id="programs">
-        <h2>Programs</h2>
-        <p>Explore academics, athletics, arts, and student activities.</p>
+      <section class="stats-bar">
+        <div class="container stats-grid" id="stats-bar">
+          <article class="stat-card skeleton-card"></article>
+          <article class="stat-card skeleton-card"></article>
+          <article class="stat-card skeleton-card"></article>
+          <article class="stat-card skeleton-card"></article>
+          <article class="stat-card skeleton-card"></article>
+        </div>
       </section>
 
-      <section id="contact">
-        <h2>Contact</h2>
-        <p>Email: info@school.edu</p>
+      <section class="registry" id="registry">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Student Database</p>
+              <h2>Driving Student Registry</h2>
+              <p class="section-sub">
+                Search and filter across the full dataset — names, instructors,
+                status, license type, and more.
+              </p>
+            </div>
+            <div class="result-count" id="result-count">Loading students…</div>
+          </div>
+
+          <div class="toolbar">
+            <label class="search-wrap">
+              <span class="search-icon" aria-hidden="true">⌕</span>
+              <input
+                id="search-input"
+                type="search"
+                placeholder="Search by name, ID, city, instructor…"
+                autocomplete="off"
+              />
+            </label>
+            <div class="filters">
+              <select id="filter-status" aria-label="Filter by status">
+                <option value="">All statuses</option>
+              </select>
+              <select id="filter-instructor" aria-label="Filter by instructor">
+                <option value="">All instructors</option>
+              </select>
+              <select id="filter-license" aria-label="Filter by license type">
+                <option value="">All license types</option>
+              </select>
+              <select id="sort-by" aria-label="Sort students">
+                <option value="name-asc">Name A → Z</option>
+                <option value="name-desc">Name Z → A</option>
+                <option value="lessons-desc">Most lessons</option>
+                <option value="hours-desc">Most hours</option>
+                <option value="enrolled-desc">Recently enrolled</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="loading-state" id="loading-state">
+            <div class="spinner"></div>
+            <p>Loading 5,000 student records…</p>
+          </div>
+
+          <div class="student-grid hidden" id="student-grid"></div>
+
+          <div class="pagination hidden" id="pagination">
+            <button class="btn btn-ghost" id="prev-page" disabled>← Previous</button>
+            <span id="page-info">Page 1 of 1</span>
+            <button class="btn btn-ghost" id="next-page">Next →</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="programs" id="programs">
+        <div class="container">
+          <div class="section-head center">
+            <p class="eyebrow">What We Offer</p>
+            <h2>Built for real road readiness</h2>
+          </div>
+          <div class="program-grid">
+            <article class="program-card">
+              <div class="program-icon">🛣️</div>
+              <h3>Behind-the-Wheel</h3>
+              <p>
+                Structured lessons with certified instructors across sedan, SUV,
+                hybrid, and manual vehicles.
+              </p>
+            </article>
+            <article class="program-card">
+              <div class="program-icon">📋</div>
+              <h3>Permit &amp; License Prep</h3>
+              <p>
+                Track learner permits, provisional licenses, and DMV road test
+                scheduling from enrollment to pass.
+              </p>
+            </article>
+            <article class="program-card">
+              <div class="program-icon">📊</div>
+              <h3>Progress Tracking</h3>
+              <p>
+                Monitor lessons completed, hours driven, payment status, and
+                instructor notes for every student.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="instructors" id="instructors">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">Our Team</p>
+            <h2>Instructor roster</h2>
+          </div>
+          <div class="instructor-grid" id="instructor-grid"></div>
+        </div>
       </section>
     </main>
 
-    <footer>
-      <p>&copy; 2026 School Name. All rights reserved.</p>
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <strong>DriveForward Academy</strong>
+          <p>Demo registry powered by fake student data.</p>
+        </div>
+        <p>&copy; 2026 DriveForward Academy</p>
+      </div>
     </footer>
+
+    <dialog class="student-modal" id="student-modal">
+      <div class="modal-inner">
+        <button class="modal-close" id="modal-close" aria-label="Close">×</button>
+        <div id="modal-content"></div>
+      </div>
+    </dialog>
+
+    <script src="app.js"></script>
   </body>
 </html>
